@@ -3,7 +3,8 @@ import style from './style.less';
 
 export default class Profile extends Component {
 	state = {
-		count: 0
+		count: 0,
+		checked: true
 	};
 
 	// update the current time
@@ -27,15 +28,21 @@ export default class Profile extends Component {
 		clearInterval(this.timer);
 	}
 
+	_ClickButton = e => {
+		let checked = !this.state.checked;
+		this.setState({ checked });
+	};
+
 	// Note: `user` comes from the URL, courtesy of our router
-	render({ user }, { time, count }) {
+	render({ user }, { time, count, checked }) {
 		return (
 			<div class={style.profile}>
 				<h1>Profile: {user}</h1>
-				<p>This is the user profile for a user named {user}.</p>
+				<p class={style.checked} data-checked={checked}>This is the user profile for a user named {user}.</p>
 
-				<div>Current time: {time}</div>
+				<div >Current time: {time}</div>
 				<div>Profile route mounted {count} times.</div>
+				<button onClick={this._ClickButton}>Click me</button>
 			</div>
 		);
 	}
