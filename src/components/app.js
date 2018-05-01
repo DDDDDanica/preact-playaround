@@ -4,6 +4,7 @@ import { Router } from 'preact-router';
 import Header from './header';
 import Home from './home';
 import Profile from './profile';
+window.h = h;
 
 export default class App extends Component {
 	/** Gets fired when the route changes.
